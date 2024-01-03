@@ -57,7 +57,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
             init_expl_paths = self.expl_data_collector.collect_new_paths(
                 self.max_path_length,
                 self.min_num_steps_before_training,
-                discard_incomplete_paths=True, #False,
+                discard_incomplete_paths=True,
             )
             self.evo_data_collector.population.successful_record(init_expl_paths)
             self.evo_data_collector.population.success_variation_and_crossover()
