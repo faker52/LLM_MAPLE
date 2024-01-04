@@ -37,7 +37,7 @@ base_variant = dict(
         policy_lr=1e-4,
         qf_lr=1e-4,
         reward_scale=1,
-        use_automatic_entropy_tuning=True,
+        use_automatic_entropy_tuning=False,
     ),
     ll_sac_variant=dict(
         high_init_ent=True,
