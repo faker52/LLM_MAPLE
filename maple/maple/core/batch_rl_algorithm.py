@@ -59,18 +59,18 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
                 self.min_num_steps_before_training,
                 discard_incomplete_paths=True,
             )
-            self.evo_data_collector.population.successful_record(init_expl_paths)
-            self.evo_data_collector.population.success_variation_and_crossover()
+            # self.evo_data_collector.population.successful_record(init_expl_paths)
+            # self.evo_data_collector.population.success_variation_and_crossover()
             self.replay_buffer.add_paths(init_expl_paths)
             self.expl_data_collector.end_epoch(-1)
-            evo_paths = self.evo_data_collector.collect_new_paths(
-                self.max_path_length,
-                self.min_num_steps_before_training,
-                discard_incomplete_paths=True,  # False,
-                success_memory=True,
-
-            )
-            self.replay_buffer.add_paths(evo_paths)
+            # evo_paths = self.evo_data_collector.collect_new_paths(
+            #     self.max_path_length,
+            #     self.min_num_steps_before_training,
+            #     discard_incomplete_paths=True,  # False,
+            #     success_memory=True,
+            #
+            # )
+            # self.replay_buffer.add_paths(evo_paths)
 
         for epoch in gt.timed_for(
                 range(self._start_epoch, self.num_epochs + 1),
@@ -86,30 +86,30 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
                     discard_incomplete_paths=True,
                 )
             gt.stamp('evaluation sampling')
-            if epoch % 1 == 0:
-                self.evo_data_collector.population.success_variation_and_crossover()
-                self.evo_data_collector.population.var2success()
+            # if epoch % 1 == 0:
+            #     self.evo_data_collector.population.success_variation_and_crossover()
+            #     self.evo_data_collector.population.var2success()
 
             if not self._eval_only:
                 for _ in range(self.num_train_loops_per_epoch):
-                    evo_paths = self.evo_data_collector.collect_new_paths(
-                        self.max_path_length,
-                        # TODO delect 100
-                        self.min_num_steps_before_training,
-                        discard_incomplete_paths=True,  # False,
-                        success_memory=True,
-
-                    )
-                    self.replay_buffer.add_paths(evo_paths)
-                    evo_paths = self.evo_data_collector.collect_new_paths(
-                        self.max_path_length,
-                        # TODO delect 100
-                        self.min_num_steps_before_training,
-                        discard_incomplete_paths=True,  # False,
-                        success_memory=False,
-
-                    )
-                    self.replay_buffer.add_paths(evo_paths)
+                    # evo_paths = self.evo_data_collector.collect_new_paths(
+                    #     self.max_path_length,
+                    #     # TODO delect 100
+                    #     self.min_num_steps_before_training,
+                    #     discard_incomplete_paths=True,  # False,
+                    #     success_memory=True,
+                    #
+                    # )
+                    # self.replay_buffer.add_paths(evo_paths)
+                    # evo_paths = self.evo_data_collector.collect_new_paths(
+                    #     self.max_path_length,
+                    #     # TODO delect 100
+                    #     self.min_num_steps_before_training,
+                    #     discard_incomplete_paths=True,  # False,
+                    #     success_memory=False,
+                    #
+                    # )
+                    # self.replay_buffer.add_paths(evo_paths)
 
                     if epoch % self._expl_epoch_freq == 0:
                         new_expl_paths = self.expl_data_collector.collect_new_paths(
@@ -118,11 +118,11 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
                             discard_incomplete_paths=True, #False,
                         )
                         gt.stamp('exploration sampling', unique=False)
-                        self.evo_data_collector.population.successful_record(new_expl_paths)
+                        # self.evo_data_collector.population.successful_record(new_expl_paths)
                         self.replay_buffer.add_paths(new_expl_paths)
-                        print(self.evo_data_collector.population.successful_memory_fitness)
-                        print(sum(self.evo_data_collector.population.successful_memory_fitness) / len(
-                            self.evo_data_collector.population.successful_memory_fitness))
+                        # print(self.evo_data_collector.population.successful_memory_fitness)
+                        # print(sum(self.evo_data_collector.population.successful_memory_fitness) / len(
+                        #     self.evo_data_collector.population.successful_memory_fitness))
 
                         gt.stamp('data storing', unique=False)
 
