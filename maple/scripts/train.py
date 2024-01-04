@@ -25,7 +25,7 @@ base_variant = dict(
         num_expl_steps_per_train_loop=3000,
         num_eval_steps_per_epoch=3000,
         num_trains_per_train_loop=1000,
-        min_num_steps_before_training=35000,
+        min_num_steps_before_training=60000,
         max_path_length=150,
         batch_size=1024,
         eval_epoch_freq=10,
@@ -243,7 +243,7 @@ if __name__ == "__main__":
     parser.add_argument('--env', type=str, default='lift')
     parser.add_argument('--label', type=str, default='test')
     parser.add_argument('--no_video', action='store_true')
-    parser.add_argument('--no_gpu', action='store_false')
+    parser.add_argument('--no_gpu', action='store_true')
     parser.add_argument('--gpu_id', type=int, default=0)
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--first_variant', action='store_true')
