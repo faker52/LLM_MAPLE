@@ -138,7 +138,7 @@ class SACHybridTrainer(SACTrainer):
             log_pi[i] = log_pi[i].reshape((-1, 1))
 
         assert len(log_pi) == 2
-        # dist_dict['log_pi_s'] = log_pi[0]
+        dist_dict['log_pi_s'] = log_pi[0]
         dist_dict['log_pi_p'] = log_pi[1]
 
         if one_hot:
@@ -319,15 +319,3 @@ class SACHybridTrainer(SACTrainer):
             self.target_entropy_s = config['later_s']
             self.target_entropy_p = config['later_p']
 
-    def trans_Esa(self, value, action_type):
-        aa = value[0::5]
-        aa1 = value[1::5]
-        aa2 = value[2::5]
-        aa3 = value[3::5]
-        aa4 = value[4::5]
-        replace_dict = {0: torch.sum(aa, dim=1).mean(), 1: torch.sum(aa1, dim=1).mean(),
-                        2: torch.sum(aa2, dim=1).mean(), 3: torch.sum(aa3, dim=1).mean(),
-                        4: torch.sum(aa4, dim=1).mean()}
-        max_indices = torch.argmax(action_type, dim=1)
-        Esa = torch.tensor([[replace_dict[idx.item()] for idx in max_indices]]).t()
-        return Esa.to(ptu.device)

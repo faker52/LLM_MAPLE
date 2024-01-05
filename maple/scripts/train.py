@@ -25,7 +25,7 @@ base_variant = dict(
         num_expl_steps_per_train_loop=3000,
         num_eval_steps_per_epoch=3000,
         num_trains_per_train_loop=1000,
-        min_num_steps_before_training=60000,
+        min_num_steps_before_training=35000,
         max_path_length=150,
         batch_size=1024,
         eval_epoch_freq=10,
@@ -235,7 +235,6 @@ def deep_update(source, overrides):
         else:
             source[key] = overrides[key]
     return source
-
 
 if __name__ == "__main__":
     # noinspection PyTypeChecker
