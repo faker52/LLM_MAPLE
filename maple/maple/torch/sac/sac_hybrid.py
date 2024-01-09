@@ -182,6 +182,7 @@ class SACHybridTrainer(SACTrainer):
                     log_pi_s + self.target_entropy_s, dd
                 ).detach()
                 alpha_s = self.log_alpha_s.exp()
+                alpha_s = 0
             else:
                 alpha_s_loss = None
                 alpha_s = None

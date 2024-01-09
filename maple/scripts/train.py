@@ -37,7 +37,7 @@ base_variant = dict(
         policy_lr=1e-4,
         qf_lr=1e-4,
         reward_scale=1,
-        use_automatic_entropy_tuning=False,
+        use_automatic_entropy_tuning=True,
     ),
     ll_sac_variant=dict(
         high_init_ent=True,
@@ -242,7 +242,7 @@ if __name__ == "__main__":
     parser.add_argument('--env', type=str, default='lift')
     parser.add_argument('--label', type=str, default='test')
     parser.add_argument('--no_video', action='store_true')
-    parser.add_argument('--no_gpu', action='store_true')
+    parser.add_argument('--no_gpu', action='store_false')
     parser.add_argument('--gpu_id', type=int, default=0)
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--first_variant', action='store_true')

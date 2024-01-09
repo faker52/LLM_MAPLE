@@ -56,7 +56,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
         if self.min_num_steps_before_training > 0 and not self._eval_only:
             init_expl_paths = self.expl_data_collector.collect_new_paths(
                 self.max_path_length,
-                self.min_num_steps_before_training,
+                self.min_num_steps_before_training/100,
                 discard_incomplete_paths=True, #False,
             )
             self.evo_data_collector.population.successful_record(init_expl_paths)
@@ -96,7 +96,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
                     evo_paths = self.evo_data_collector.collect_new_paths(
                         self.max_path_length,
                         # TODO delect 100
-                        self.min_num_steps_before_training,
+                        self.min_num_steps_before_training/100,
                         discard_incomplete_paths=True,  # False,
                         success_memory=True,
 
@@ -105,7 +105,7 @@ class BatchRLAlgorithm(BaseRLAlgorithm, metaclass=abc.ABCMeta):
                     evo_paths = self.evo_data_collector.collect_new_paths(
                         self.max_path_length,
                         # TODO delect 100
-                        self.min_num_steps_before_training,
+                        self.min_num_steps_before_training/100,
                         discard_incomplete_paths=True,  # False,
                         success_memory=False,
 
