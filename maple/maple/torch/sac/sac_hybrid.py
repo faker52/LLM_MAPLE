@@ -273,7 +273,7 @@ class SACHybridTrainer(SACTrainer):
             eval_statistics.update(policy_statistics)
             if self.use_automatic_entropy_tuning:
                 if 'log_pi_s' in dd:
-                    eval_statistics['Alpha S'] = alpha_s.item()
+                    eval_statistics['Alpha S'] = alpha_s
                     eval_statistics['Alpha S Loss'] = alpha_s_loss.item()
 
                 eval_statistics['Alpha P'] = alpha_p.item()
