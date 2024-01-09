@@ -242,7 +242,7 @@ if __name__ == "__main__":
     parser.add_argument('--env', type=str, default='lift')
     parser.add_argument('--label', type=str, default='test')
     parser.add_argument('--no_video', action='store_true')
-    parser.add_argument('--no_gpu', action='store_false')
+    parser.add_argument('--no_gpu', action='store_true')
     parser.add_argument('--gpu_id', type=int, default=0)
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--first_variant', action='store_true')
